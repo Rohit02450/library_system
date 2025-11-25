@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Issue Book</h2>
+
+<!-- Show success/error messages -->
+{% if message %}
+    {% if message.startswith('❌') %}
+        <p style="color:red; font-weight:bold; margin-bottom:15px;">
+            {{ message }}
+        </p>
+    {% else %}
+        <p style="color:green; font-weight:bold; margin-bottom:15px;">
+            {{ message }}
+        </p>
+    {% endif %}
+{% endif %}
+
+<form method="POST">
+    <label>Member:</label>
+    <select name="member_id" required>
+        {% for m in members %}
+        <option value="{{ m.id }}">{{ m.name }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Book:</label>
+    <select name="book_id" required>
+        {% for b in books %}
+        <option value="{{ b.id }}">{{ b.title }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <button>Issue</button>
+</form>
+
+{% endblock %}

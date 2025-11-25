@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Import Books</h2>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    {{ form.count.label }} {{ form.count }} <br><br>
+    {{ form.title.label }} {{ form.title }} <br><br>
+    {{ form.authors.label }} {{ form.authors }} <br><br>
+
+    {{ form.submit }}
+</form>
+{% endblock %}

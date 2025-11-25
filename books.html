@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Books</h2>
+
+<form>
+    <input type="text" name="q" placeholder="Search title or author">
+    <button>Search</button>
+</form>
+
+<a href="/books/add">Add Book</a>
+
+<table border="1" cellpadding="5">
+<tr>
+    <th>ID</th><th>Title</th><th>Authors</th><th>Stock</th><th>Actions</th>
+</tr>
+
+
+{% for b in books %}
+<tr>
+    <td>{{b.id}}</td>
+    <td>{{b.title}}</td>
+    <td>{{b.authors}}</td>
+    <td>{{b.stock}}</td>
+    <td>
+    <a href="/books/edit/{{b.id}}">Edit</a> |
+    <a href="/books/delete/{{b.id}}" onclick="return confirm('Delete this book?')">Delete</a>
+</td>
+
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

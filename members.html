@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Members</h2>
+
+<a href="/members/add">Add Member</a>
+<br><br>
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Debt (₹)</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for m in members %}
+    <tr>
+        <td>{{ m.id }}</td>
+        <td>{{ m.name }}</td>
+
+        <!-- Highlight debt above ₹500 -->
+        {% if m.outstanding_debt > 500 %}
+            <td style="color:red; font-weight:bold;">{{ m.outstanding_debt }}</td>
+        {% else %}
+            <td>{{ m.outstanding_debt }}</td>
+        {% endif %}
+
+        <td>
+            <a href="/members/edit/{{ m.id }}">Edit</a> |
+            <a href="/members/delete/{{ m.id }}" onclick="return confirm('Delete this member?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
